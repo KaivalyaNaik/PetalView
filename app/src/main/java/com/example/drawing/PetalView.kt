@@ -1,20 +1,22 @@
 package com.example.drawing
 
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
-import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.scale
 
 
-class PetalView : View {
+private val FROM_COLOR = intArrayOf(49, 179, 110)
+private const val THRESHOLD = 3
+
+class PetalView : androidx.appcompat.widget.AppCompatTextView {
     private var petalBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.ellipse_removebg_preview)
+
+
 
     private var rot: Float = 0.0f
 
@@ -27,26 +29,25 @@ class PetalView : View {
 
 
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ResourceAsColor")
     override fun onDraw(canvas: Canvas?) {
         val p = Paint()
         val p1=Paint()
-        val c= context.getColor(R.color.red)
-        p.color = c
+        p.color = Color.RED
         p.strokeWidth=10f
         p.textSize = 50f
         petalBitmap = petalBitmap.scale(width, height)
         petalBitmap = rotateBitmap(petalBitmap, rot)
-        canvas?.drawBitmap(petalBitmap, 0f, 0f, p1)
-        if (rot == 0f)
-            canvas?.drawText("150", ((width / 2).toFloat() - 60), (height / 2) + 35.toFloat(), p)
-        else if(rot== 90f)
-            canvas?.drawText("180", ((width / 2).toFloat() - 70), (height / 2) + 20.toFloat(), p)
-        else if(rot ==180f)
-            canvas?.drawText("250", ((width / 2).toFloat() - 30), (height / 2) .toFloat(), p)
-        else
-            canvas?.drawText("90", ((width / 2).toFloat() - 20), (height / 2) + 35.toFloat(), p)
+
+
+
+        canvas?.drawBitmap(petalBitmap, 0f, 0f, p)
+        
+        when (rot) {
+            0f -> canvas?.drawText("150", ((width / 2).toFloat() - 60), (height / 2) + 35.toFloat(), p)
+            90f -> canvas?.drawText("180", ((width / 2).toFloat() - 70), (height / 2) + 20.toFloat(), p)
+            180f -> canvas?.drawText("250", ((width / 2).toFloat() - 30), (height / 2).toFloat(), p)
+            else -> canvas?.drawText("90", ((width / 2).toFloat() - 20), (height / 2) + 35.toFloat(), p)
+        }
     }
 
 
@@ -57,6 +58,13 @@ class PetalView : View {
         original.recycle()
         return rotatedBitmap
     }
+
+    private fun match(pixel: Int): Boolean {
+        //There may be a better way to match, but I wanted to do a comparison ignoring
+        //transparency, so I couldn't just do a direct integer compare.
+        return Math.abs(Color.red(pixel) - FROM_COLOR[0]) < THRESHOLD && Math.abs(Color.green(pixel) - FROM_COLOR[1]) < THRESHOLD && Math.abs(Color.blue(pixel) - FROM_COLOR[2]) < THRESHOLD
+    }
+
 }
 
 
