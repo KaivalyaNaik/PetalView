@@ -1,13 +1,9 @@
 package com.example.drawing
 
-import android.graphics.*
 import android.os.Bundle
-import android.transition.Fade
-import android.transition.TransitionManager
 import android.view.animation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.transition.MaterialFadeThrough
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,34 +11,64 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val interpolator=DecelerateInterpolator()
+        val linearInterpolator=LinearInterpolator()
+
         val fadeIn: Animation = AlphaAnimation(0f, 1f)
-        fadeIn.interpolator = DecelerateInterpolator() //add this
+        fadeIn.interpolator = interpolator
 
         fadeIn.duration = 2000
 
-        val rotateAnimation =RotateAnimation(-180f,-360f,Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,1.0f)
-        rotateAnimation.duration=1500
-        rotateAnimation.interpolator=DecelerateInterpolator()
+        val rotatepetal1 =RotateAnimation(-0f,-360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,1.0f)
+        rotatepetal1.duration=4000
+        rotatepetal1.interpolator=interpolator
 
-        val animation = AnimationSet(false) //change to false
 
-        animation.addAnimation(fadeIn)
-        animation.addAnimation(rotateAnimation)
+        val rotatepetal2 =RotateAnimation(-270f,-360f,Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.5f)
+        rotatepetal2.duration=1000
+        rotatepetal2.interpolator=interpolator
+
+
+        val rotatepetal3 =RotateAnimation(-180f,-360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0f)
+        rotatepetal3.duration=2000
+        rotatepetal3.interpolator=interpolator
+
+        val rotatepetal4 =RotateAnimation(-90f,-360f,Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,0.5f)
+        rotatepetal4.duration=3000
+        rotatepetal4.interpolator=interpolator
+
+        val animationpetal1 = AnimationSet(false) //change to false
+        val animationpetal2 =AnimationSet(false)
+        val animationpetal3 =AnimationSet(false)
+        val animationpetal4 =AnimationSet(false)
+
+
+        animationpetal1.addAnimation(fadeIn)
+        animationpetal1.addAnimation(rotatepetal1)
+
+        animationpetal2.addAnimation(fadeIn)
+        animationpetal2.addAnimation(rotatepetal2)
+
+        animationpetal3.addAnimation(fadeIn)
+        animationpetal3.addAnimation(rotatepetal3)
+
+        animationpetal4.addAnimation(fadeIn)
+        animationpetal4.addAnimation(rotatepetal4)
+
+
+
 
         val view:ConstraintLayout=findViewById(R.id.flower)
 
         val svgPetal:SvgPetal =findViewById(R.id.svgPetal)
-        val svgPetal90:SvgPetal =findViewById(R.id.svgPetal2)
-        val svgPetal180:SvgPetal =findViewById(R.id.svgPetal3)
+        val svgPetal180:SvgPetal =findViewById(R.id.svgPetal2)
+        val svgPetal90:SvgPetal =findViewById(R.id.svgPetal3)
         val svgPetal270:SvgPetal =findViewById(R.id.svgPetal4)
 
-
-
-        svgPetal.animation=animation
-        svgPetal90.animation=animation
-        svgPetal180.animation=animation
-        svgPetal270.animation=animation
-
+        svgPetal.animation=animationpetal1
+        svgPetal270.animation=animationpetal2
+        svgPetal180.animation=animationpetal3
+        svgPetal90.animation=animationpetal4
 
 
 
