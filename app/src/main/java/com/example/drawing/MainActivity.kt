@@ -20,20 +20,29 @@ class MainActivity : AppCompatActivity() {
 
         fadeIn.duration = 2000
 
-        val rotateAnimation =RotateAnimation(270f,360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
-        rotateAnimation.duration=1200
-        rotateAnimation.interpolator=LinearInterpolator()
+        val rotateAnimation =RotateAnimation(-180f,-360f,Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,1.0f)
+        rotateAnimation.duration=1500
+        rotateAnimation.interpolator=DecelerateInterpolator()
 
         val animation = AnimationSet(false) //change to false
-
 
         animation.addAnimation(fadeIn)
         animation.addAnimation(rotateAnimation)
 
         val view:ConstraintLayout=findViewById(R.id.flower)
 
+        val svgPetal:SvgPetal =findViewById(R.id.svgPetal)
+        val svgPetal90:SvgPetal =findViewById(R.id.svgPetal2)
+        val svgPetal180:SvgPetal =findViewById(R.id.svgPetal3)
+        val svgPetal270:SvgPetal =findViewById(R.id.svgPetal4)
 
-        view.animation=animation
+
+
+        svgPetal.animation=animation
+        svgPetal90.animation=animation
+        svgPetal180.animation=animation
+        svgPetal270.animation=animation
+
 
 
 
