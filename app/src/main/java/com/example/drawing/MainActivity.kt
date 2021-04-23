@@ -2,6 +2,7 @@ package com.example.drawing
 
 import android.content.res.ColorStateList
 import android.graphics.*
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.transition.Fade
 import android.transition.TransitionManager
@@ -22,9 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         fadeIn.duration = 2000
 
-        val rotateAnimation =RotateAnimation(315f,360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
-        rotateAnimation.duration=1000
-        rotateAnimation.interpolator=LinearInterpolator()
+        val rotateAnimation =RotateAnimation(-0f,360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+        rotateAnimation.duration=5000
+        rotateAnimation.interpolator=DecelerateInterpolator()
 
         val animation = AnimationSet(false) //change to false
 
@@ -36,7 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         val svgPetal:SvgPetal =findViewById(R.id.svgPetal)
 
-        svgPetal.backgroundTintList= ColorStateList.valueOf(ContextCompat.getColor(this,R.color.red))
+
+
+
+        val petalbackground  =GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, intArrayOf(0xFF881B1B.toInt(),0xFFFF0000.toInt(),))
+
 
         val svgPetal315:SvgPetal =findViewById(R.id.petal315)
 
@@ -44,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         svgPetal315.backgroundTintList=ColorStateList.valueOf(ContextCompat.getColor(this,R.color.orange))
 
         view.animation=animation
-
 
 
     }

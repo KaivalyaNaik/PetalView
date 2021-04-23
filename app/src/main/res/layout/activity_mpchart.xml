@@ -19,29 +19,39 @@
 
     <com.example.drawing.SvgPetal
         android:id="@+id/petal315"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:rotation="315"
         android:background="@drawable/red_petal_315"
         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
         app:layout_constraintEnd_toEndOf="@+id/appCompatTextView" />
 
     <com.example.drawing.SvgPetal
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:rotation="135"
+        android:backgroundTint="@color/green"
+        android:text="167"
         android:background="@drawable/red_petal_135"
         app:layout_constraintStart_toStartOf="@+id/appCompatTextView"
         app:layout_constraintTop_toTopOf="@+id/appCompatTextView" />
 
     <com.example.drawing.SvgPetal
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:rotation="225"
+        android:backgroundTint="@color/red"
+        android:text="290"
         android:background="@drawable/red_petal_225"
         app:layout_constraintEnd_toEndOf="@+id/appCompatTextView"
         app:layout_constraintTop_toTopOf="@+id/appCompatTextView" />
 
     <com.example.drawing.SvgPetal
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:backgroundTint="@color/green"
+        android:rotation="45"
+        android:text="120"
         android:background="@drawable/red_petal_45"
         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
         app:layout_constraintStart_toStartOf="@+id/appCompatTextView" />
