@@ -13,11 +13,26 @@ class MainActivity : AppCompatActivity() {
 
         val interpolator=DecelerateInterpolator()
         val linearInterpolator=LinearInterpolator()
+        val bounceInterpolator=BounceInterpolator()
 
-        val fadeIn: Animation = AlphaAnimation(0f, 1f)
-        fadeIn.interpolator = interpolator
+        val fadeIn1: Animation = AlphaAnimation(0f, 1f)
+        fadeIn1.interpolator = interpolator
 
-        fadeIn.duration = 2000
+        fadeIn1.duration = 4000
+        val fadeIn2: Animation = AlphaAnimation(0f, 1f)
+        fadeIn2.interpolator = interpolator
+
+        fadeIn2.duration = 1000
+
+        val fadeIn3: Animation = AlphaAnimation(0f, 1f)
+        fadeIn3.interpolator = interpolator
+
+        fadeIn3.duration = 2000
+
+        val fadeIn4: Animation = AlphaAnimation(0f, 1f)
+        fadeIn4.interpolator = interpolator
+
+        fadeIn4.duration = 2000
 
         val rotatepetal1 =RotateAnimation(-0f,-360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,1.0f)
         rotatepetal1.duration=4000
@@ -43,16 +58,16 @@ class MainActivity : AppCompatActivity() {
         val animationpetal4 =AnimationSet(false)
 
 
-        animationpetal1.addAnimation(fadeIn)
+        animationpetal1.addAnimation(fadeIn1)
         animationpetal1.addAnimation(rotatepetal1)
 
-        animationpetal2.addAnimation(fadeIn)
+        animationpetal2.addAnimation(fadeIn2)
         animationpetal2.addAnimation(rotatepetal2)
 
-        animationpetal3.addAnimation(fadeIn)
+        animationpetal3.addAnimation(fadeIn3)
         animationpetal3.addAnimation(rotatepetal3)
 
-        animationpetal4.addAnimation(fadeIn)
+        animationpetal4.addAnimation(fadeIn4)
         animationpetal4.addAnimation(rotatepetal4)
 
 
